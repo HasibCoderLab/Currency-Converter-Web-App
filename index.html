@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Currency-Converter-Web-App</title>
 </head>
+
 <body>
-    
+
+    <div class="container">
+        <h2>Currency-Converter</h2>
+        <form action="">
+            <div class="amount">
+                <p> Enter Amount</p>
+                <input value="100" type="text" name="" id="">
+                <div class="dropDown">
+                    <div class="from">
+                        <p>From</p>
+                        <div class="selet-container">
+                            <img src="https://flagsapi.com/US/flat/64.png" alt="">
+                            <select name="from" id="">
+                                <option value="">USD</option>
+                                <option value="INR ">INR</option>
+                                <option value="BDT">BDT</option>
+                                <option value="EUR">EUR</option>
+                                <option value="AUD">AUD</option>
+
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="to">
+                        <p>To</p>
+                        <div class="selet-container">
+                            <img src="https://flagsapi.com/BD/flat/64.png" alt="">
+                            <select name="from" id="">
+                                <option value="">USD</option>
+                                <option value="INR ">INR</option>
+                                <option value="BDT" selected>BDT</option>
+                                <option value="EUR">EUR</option>
+                                <option value="AUD">AUD</option>
+
+
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="msg">1 USD = 120 BDT</div>
+            <button>Get Exchange Rate </button>
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
