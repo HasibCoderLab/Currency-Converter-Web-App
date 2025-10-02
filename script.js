@@ -3,7 +3,7 @@ const dropDown = document.querySelectorAll(".dropDown select");
 
 for (let select of dropDown) {
     for (let currCode in countryList) {
-        console.log(countryList);
+        // console.log(countryList);
         
         let newOption = document.createElement("option");
         newOption.innerText = currCode;
@@ -15,4 +15,17 @@ for (let select of dropDown) {
         }
         select.append(newOption);
     }
+    select.addEventListener("change" ,(evt) =>{
+    updateFlag(evt.target)
+    })
+}
+const updateFlag = (element) =>{
+    let currCode = element.value;
+    let  countryCode  = countryList[currCode];
+    let newSrc  =  `https://flagsapi.com/${countryCode}/flat/64.png`;
+    let img = element.parentElement.querySelector("img");
+    img.src = newSrc
+    
+console.log(currCode);
+
 }
