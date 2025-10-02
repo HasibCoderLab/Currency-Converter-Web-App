@@ -5,6 +5,7 @@ const fromCurr = document.querySelector(".from select")
 const toCurr = document.querySelector(".to select");
 const msg = document.querySelector(".msg")
 
+
 for (let select of dropDown) {
     for (let currCode in countryList) {
         // console.log(countryList);
@@ -34,23 +35,30 @@ console.log(currCode);
 
 }
 
-btn.addEventListener("click" ,async (evt) =>{
+btn.addEventListener("click", async (evt) => {
     evt.preventDefault();
-    let amount  = document.querySelector("input");
-    let amtVal = amount.value;
-    if (amtVal === "" || amtVal <1) {
-        amtVal = 1;
-        amount.value = 1;
-    }
-    console.log(fromCurr.value , toCurr.value);
-    
-    const URL = `${Base_URL}/${fromCurr.value.toLowerCase()}.${toCurr.value.toLowerCase()}`;
-    let response = await fetch(URL);
-    let data = await response.json();
-    let rate= data[toCurr.value.toLowerCase()] ;
-    let finalAmount = amtVal * rate ;
-    MessageChannel.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
-       console.log(data);
+    updateExchangeRate();
     
 });
 
+const updateExchangeRate = async () =>{
+    let amount = document.querySelector("input");
+    let amtVal = amount.value;
+    if (amtVal === "" || amtVal < 1) {
+        amtVal = 1;
+        amount.value = 1;
+    }
+
+    const URL = `${Base_URL}${fromCurr.value.toLowerCase()}.json`;
+    let response = await fetch(URL);
+    let data = await response.json();
+
+    let rate = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
+    let finalAmount = (amtVal * rate).toFixed(2);
+
+    msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+}
+
+window.addEventListener("load" , () =>{
+    updateExchangeRate()
+})
